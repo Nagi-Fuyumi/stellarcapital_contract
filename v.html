@@ -7,8 +7,13 @@
       name="viewport"
       content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
     />
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <style>
+      body {
+        background-color: #fefefe;
+      }
+    </style>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -17,20 +22,33 @@
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
     <script type="module">
       import abi from './abi.js'
+      const [contractAddress, tokenId] = location.hash
+        .replace('#', '')
+        .split('+')
+
       $(async () => {
-        const accounts = await ethereum.request({
-          method: 'eth_requestAccounts',
-        })
-        const account = accounts[0]
-        const web3 = new Web3(ethereum)
-        const QUOXKAContract = new web3.eth.Contract(
-          abi,
-          '0xf82e984a78ec890c00c7d0d6665f0a5bd8640625',
-        )
-      });
+        const web3 = new Web3('https://polygon-rpc.com')
+        const Contract = new web3.eth.Contract(abi, contractAddress)
+
+        $('#contractId').text(contractAddress)
+        $('#tokenId').text(tokenId)
+      })
     </script>
   </head>
   <body>
-    aaaa
+    <table>
+      <tr>
+        <th>名称</th>
+        <th>値</th>
+      </tr>
+      <tr>
+        <td>ContractID:</td>
+        <td id="contractId"></td>
+      </tr>
+      <tr>
+        <td>TokenID:</td>
+        <td id="tokenId"></td>
+      </tr>
+    </table>
   </body>
 </html>
