@@ -2,7 +2,7 @@
 <html lang="jp">
   <head>
     <meta charset="utf-8" />
-    <title>StellarWorks - Galaxy</title>
+    <title>TEST</title>
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
@@ -44,9 +44,10 @@
     <script src="web3.min.js"></script>
     <script type="module">
       import abi from './abi.js'
-      const [contractAddress, tokenId] = location.hash
-        .replace('#', '')
-        .split('+')
+      const searchParams = new URLSearchParams(location.href)
+      const contractAddress = searchParams.get('addr')
+      const tokenId = searchParams.get('tokenid')
+      const block = searchParams.get('block')
 
       $(async () => {
         const web3 = new Web3('https://polygon-rpc.com')
