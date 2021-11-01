@@ -67,7 +67,7 @@
 
         $('#contractId').text(contractAddress)
         $('#tokenId').text(tokenId)
-        $('#tokenCount').text(counter + '回')
+        $('.tokenCount').text(counter)
         $('#balance').text(balance + 'NFTs')
         $('#startBlock').text(startBlock)
         $('#block').text(block)
@@ -93,12 +93,18 @@
     </script>
   </head>
   <body>
-    <h1>Token取得テストApp</h1>
-    <h2>徐々に改変されるNFT</h2>
+    <h1>ふざけたNFT</h1>
+    <h2>徐々に改変されます</h2>
+    <p>
+      あなたは、
+      <span class="tokenCount"></span>
+      人目のお客様です。
+    </p>
     <button id="change">絶対に、押すなよ！！！</button>
     <div id="subcontainer" style="display: none;">
-      <h1>何故押した！？</h1>
+      <h1>このNFTには実は100ETHの価値がある。</h1>
       <p>うそですごめんなさい。</p>
+      <p><img src="./yokudeki.png" /></p>
     </div>
     <p id="time"></p>
 
@@ -118,7 +124,10 @@
         </tr>
         <tr>
           <td>転送回数</td>
-          <td id="tokenCount"></td>
+          <td>
+            <span class="tokenCount"></span>
+            回
+          </td>
         </tr>
         <tr>
           <td>総発行数</td>
