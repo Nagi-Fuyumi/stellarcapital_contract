@@ -78,6 +78,7 @@
         const timefunc = () => {
           requestAnimationFrame(timefunc)
           $('#metar').text(Math.floor(Date.now() / 1000 - timestamp) + '秒経過')
+          $('#time').text(new Date().toUTCString())
         }
         timefunc()
 
@@ -99,6 +100,7 @@
       <h1>何故押した！？</h1>
       <p>うそですごめんなさい。</p>
     </div>
+    <p id="time"></p>
     <div id="container">
       <table>
         <tr>
