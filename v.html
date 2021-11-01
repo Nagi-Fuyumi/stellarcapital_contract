@@ -10,15 +10,14 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Cache-Control" content="no-cache" />
     <style>
+      * {
+        word-break: break-all;
+      }
       body {
         background-color: #fefefe;
       }
     </style>
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
+    <script src="jquery-3.6.0.min.js"></script>
     <script src="web3.min.js"></script>
     <script type="module">
       import abi from './abi.js'
@@ -30,8 +29,13 @@
         const web3 = new Web3('https://polygon-rpc.com')
         const Contract = new web3.eth.Contract(abi, contractAddress)
 
+        const counter = await Contract.methods
+          .getokenTransferCount(tokenId)
+          .call()
+
         $('#contractId').text(contractAddress)
         $('#tokenId').text(tokenId)
+        $('#tokenCount').text(counter)
       })
     </script>
   </head>
@@ -48,6 +52,10 @@
       <tr>
         <td>TokenID:</td>
         <td id="tokenId"></td>
+      </tr>
+      <tr>
+        <td>転送回数:</td>
+        <td id="tokenCount"></td>
       </tr>
     </table>
   </body>
