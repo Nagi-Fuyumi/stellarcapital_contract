@@ -33,10 +33,16 @@
         const counter = await Contract.methods
           .getokenTransferCount(tokenId)
           .call()
+        const balance = await Contract.methods.totalSupply().call()
+        const startBlock = await Contract.methods.getStartBlock().call()
+        const tokenName = await Contract.methods.name().call()
 
         $('#contractId').text(contractAddress)
         $('#tokenId').text(tokenId)
         $('#tokenCount').text(counter + '回')
+        $('#balance').text(balance + 'NFTs')
+        $('#startBlock').text(startBlock)
+        $('#name').text(tokenName)
       })
     </script>
   </head>
@@ -57,6 +63,18 @@
       <tr>
         <td>転送回数:</td>
         <td id="tokenCount"></td>
+      </tr>
+      <tr>
+        <td>総発行数:</td>
+        <td id="balance"></td>
+      </tr>
+      <tr>
+        <td>生成されたBLOCK:</td>
+        <td id="startBlock"></td>
+      </tr>
+      <tr>
+        <td>トークン名:</td>
+        <td id="name"></td>
       </tr>
     </table>
   </body>
