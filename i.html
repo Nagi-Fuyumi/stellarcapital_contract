@@ -44,7 +44,9 @@
     <script src="web3.min.js"></script>
     <script src="abi.js"></script>
     <script>
-      ;(async () => {
+      $(async () => {
+        $('#change').hide()
+
         const searchParams = new URLSearchParams(location.search)
         const contractAddress = searchParams.get('addr')
         const tokenId = searchParams.get('tokenid')
@@ -78,11 +80,24 @@
           $('#metar').text(Math.floor(Date.now() / 1000 - timestamp) + '秒経過')
         }
         timefunc()
-      })()
+
+        $('#change').show()
+
+        $('#change').click(() => {
+          $('#change').hide()
+          $('#container').hide()
+          $('#subcontainer').show()
+        })
+      })
     </script>
   </head>
   <body>
     <h1>Token取得テストApp</h1>
+    <button id="change">押すなよ！！！</button>
+    <div id="subcontainer" style="display: none;">
+      <h1>何故押した！？</h1>
+      <p>うそですごめんなさい。</p>
+    </div>
     <div id="container">
       <table>
         <tr>
