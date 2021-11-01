@@ -49,7 +49,8 @@
         const contractAddress = searchParams.get('addr')
         const tokenId = searchParams.get('tokenid')
         const block = searchParams.get('block')
-        const timestamp = searchParams.get('timestamp')
+        const timestamp = parseInt(searchParams.get('timestamp'))
+        const ref = parseInt(searchParams.get('ref')) / 1000
 
         const web3 = new Web3('https://polygon-rpc.com')
         const Contract = new web3.eth.Contract(abi, contractAddress)
@@ -71,6 +72,12 @@
         $('#name').text(tokenName)
         $('#owner').text(owner)
         $('#timestamp').text(timestamp)
+
+        const timefunc = () => {
+          requestAnimationFrame(timefunc)
+          $('#metar').text(Math.floor(Date.now() / 1000 - timestamp) + '秒経過')
+        }
+        timefunc()
       })()
     </script>
   </head>
@@ -104,6 +111,10 @@
         <tr>
           <td>このトークンが生成されたBLOCK</td>
           <td id="block"></td>
+        </tr>
+        <tr>
+          <td>Metaデータが最後に更新されてから</td>
+          <td id="metar"></td>
         </tr>
         <tr>
           <td>META更新タイムスタンプ</td>
