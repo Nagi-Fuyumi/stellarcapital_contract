@@ -23,99 +23,17 @@
         background-color: #fefefe;
         font-size: 12px;
       }
-      table {
-        background-color: #eee;
-        border: 1px solid #aaa;
-        width: 100%;
-      }
-
-      table tr:nth-child(odd) {
-        background-color: #fafafa;
-      }
-
-      tr > th {
-        background-color: #888;
-      }
-      tr > td {
-        padding: 10px;
-      }
     </style>
     <script src="jquery-3.6.0.min.js"></script>
     <script src="web3.min.js"></script>
-    <script type="module">
-      import abi from './abi.js'
-      const searchParams = new URLSearchParams(location.search)
-      const contractAddress = searchParams.get('addr')
-      const tokenId = searchParams.get('tokenid')
-      const block = searchParams.get('block')
-      const timestamp = searchParams.get('timestamp')
-
-      $(async () => {
-        const web3 = new Web3('https://polygon-rpc.com')
-        const Contract = new web3.eth.Contract(abi, contractAddress)
-
-        const counter = await Contract.methods
-          .getokenTransferCount(tokenId)
-          .call()
-        const balance = await Contract.methods.totalSupply().call()
-        const startBlock = await Contract.methods.getStartBlock().call()
-        const tokenName = await Contract.methods.name().call()
-        const owner = await Contract.methods.ownerOf(tokenId).call()
-
-        $('#contractId').text(contractAddress)
-        $('#tokenId').text(tokenId)
-        $('#tokenCount').text(counter + '回')
-        $('#balance').text(balance + 'NFTs')
-        $('#startBlock').text(startBlock)
-        $('#block').text(block)
-        $('#name').text(tokenName)
-        $('#owner').text(owner)
-        $('#timestamp').text(timestamp)
+    <script src="abi.js"></script>
+    <script src="script.js"></script>
+    <script>
+      $(() => {
+        $.getScript(`script.js?_time=${Date.now()}`)
+        $('body').load(`i.html?_time=${Date.now()} #container`)
       })
     </script>
   </head>
-  <body>
-    <table>
-      <tr>
-        <th>名称</th>
-        <th>値</th>
-      </tr>
-      <tr>
-        <td>ContractID</td>
-        <td id="contractId"></td>
-      </tr>
-      <tr>
-        <td>TokenID</td>
-        <td id="tokenId"></td>
-      </tr>
-      <tr>
-        <td>転送回数</td>
-        <td id="tokenCount"></td>
-      </tr>
-      <tr>
-        <td>総発行数</td>
-        <td id="balance"></td>
-      </tr>
-      <tr>
-        <td>スマコンが生成されたBLOCK</td>
-        <td id="startBlock"></td>
-      </tr>
-      <tr>
-        <td>このトークンが生成されたBLOCK</td>
-        <td id="block"></td>
-      </tr>
-      <tr>
-        <td>タイムスタンプ</td>
-        <td id="timestamp"></td>
-      </tr>
-      <tr>
-        <td>トークン名</td>
-        <td id="name"></td>
-      </tr>
-      <tr>
-        <td>Owner</td>
-        <td id="owner"></td>
-      </tr>
-    </table>
-  </body>
+  <body></body>
 </html>

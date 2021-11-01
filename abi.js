@@ -1,4 +1,4 @@
-const abi = [
+var abi = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
   {
     anonymous: false,
@@ -340,5 +340,3 @@ const abi = [
   },
   { stateMutability: "payable", type: "receive" },
 ];
-
-export default abi;

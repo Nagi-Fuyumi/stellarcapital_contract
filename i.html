@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head id="head">
+    <meta charset="utf-8" />
+    <title>Inner</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+  </head>
+  <body>
+    <div id="container">
+      <style>
+        * {
+          word-break: break-all;
+          box-sizing: border-box;
+        }
+        html,
+        body {
+          padding: 0;
+          margin: 0;
+        }
+        body {
+          background-color: #fefefe;
+          font-size: 12px;
+        }
+        table {
+          background-color: #eee;
+          border: 1px solid #aaa;
+          width: 100%;
+        }
+
+        table tr:nth-child(odd) {
+          background-color: #fafafa;
+        }
+
+        tr > th {
+          background-color: #888;
+        }
+        tr > td {
+          padding: 10px;
+        }
+      </style>
+
+      <table>
+        <tr>
+          <th>名称</th>
+          <th>値</th>
+        </tr>
+        <tr>
+          <td>ContractID</td>
+          <td id="contractId"></td>
+        </tr>
+        <tr>
+          <td>TokenID</td>
+          <td id="tokenId"></td>
+        </tr>
+        <tr>
+          <td>転送回数</td>
+          <td id="tokenCount"></td>
+        </tr>
+        <tr>
+          <td>総発行数</td>
+          <td id="balance"></td>
+        </tr>
+        <tr>
+          <td>スマコンが生成されたBLOCK</td>
+          <td id="startBlock"></td>
+        </tr>
+        <tr>
+          <td>このトークンが生成されたBLOCK</td>
+          <td id="block"></td>
+        </tr>
+        <tr>
+          <td>META更新タイムスタンプ</td>
+          <td id="timestamp"></td>
+        </tr>
+        <tr>
+          <td>トークン名</td>
+          <td id="name"></td>
+        </tr>
+        <tr>
+          <td>Owner</td>
+          <td id="owner"></td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
