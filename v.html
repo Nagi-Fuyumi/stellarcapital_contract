@@ -44,10 +44,11 @@
     <script src="web3.min.js"></script>
     <script type="module">
       import abi from './abi.js'
-      const searchParams = new URLSearchParams(location.href)
+      const searchParams = new URLSearchParams(location.search)
       const contractAddress = searchParams.get('addr')
       const tokenId = searchParams.get('tokenid')
       const block = searchParams.get('block')
+      const timestamp = searchParams.get('timestamp')
 
       $(async () => {
         const web3 = new Web3('https://polygon-rpc.com')
@@ -66,8 +67,10 @@
         $('#tokenCount').text(counter + '回')
         $('#balance').text(balance + 'NFTs')
         $('#startBlock').text(startBlock)
+        $('#block').text(block)
         $('#name').text(tokenName)
         $('#owner').text(owner)
+        $('#timestamp').text(timestamp)
       })
     </script>
   </head>
@@ -94,8 +97,16 @@
         <td id="balance"></td>
       </tr>
       <tr>
-        <td>生成されたBLOCK</td>
+        <td>スマコンが生成されたBLOCK</td>
         <td id="startBlock"></td>
+      </tr>
+      <tr>
+        <td>このトークンが生成されたBLOCK</td>
+        <td id="block"></td>
+      </tr>
+      <tr>
+        <td>タイムスタンプ</td>
+        <td id="timestamp"></td>
       </tr>
       <tr>
         <td>トークン名</td>
