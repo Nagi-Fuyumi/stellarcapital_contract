@@ -25,7 +25,7 @@
       }
       table {
         background-color: #eee;
-        border: 1px solid #333;
+        border: 1px solid #aaa;
         width: 100%;
       }
 
@@ -58,6 +58,7 @@
         const balance = await Contract.methods.totalSupply().call()
         const startBlock = await Contract.methods.getStartBlock().call()
         const tokenName = await Contract.methods.name().call()
+        const owner = await Contract.methods.ownerOf(tokenId).call()
 
         $('#contractId').text(contractAddress)
         $('#tokenId').text(tokenId)
@@ -65,6 +66,7 @@
         $('#balance').text(balance + 'NFTs')
         $('#startBlock').text(startBlock)
         $('#name').text(tokenName)
+        $('#owner').text(owner)
       })
     </script>
   </head>
@@ -97,6 +99,10 @@
       <tr>
         <td>トークン名</td>
         <td id="name"></td>
+      </tr>
+      <tr>
+        <td>Owner</td>
+        <td id="owner"></td>
       </tr>
     </table>
   </body>
