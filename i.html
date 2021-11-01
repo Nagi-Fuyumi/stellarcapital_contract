@@ -44,6 +44,17 @@
       img {
         max-width: 100%;
       }
+
+      .mq {
+        position: relative;
+        height: 12px;
+        width: 100%;
+      }
+
+      .mq > span {
+        position: absolute;
+        width: 170px;
+      }
     </style>
     <script src="jquery-3.6.0.min.js"></script>
     <script src="web3.min.js"></script>
@@ -80,10 +91,16 @@
         $('#owner').text(owner)
         $('#timestamp').text(timestamp)
 
+        let leftcounter = window.innerWidth
         const timefunc = () => {
           requestAnimationFrame(timefunc)
           $('#metar').text(Math.floor(Date.now() / 1000 - timestamp) + '秒経過')
           $('#time').text(new Date().toUTCString())
+          leftcounter--
+          $('.mq span').css({ left: leftcounter })
+          if (leftcounter < -200) {
+            leftcounter = window.innerWidth
+          }
         }
         timefunc()
 
@@ -112,7 +129,9 @@
       <p><img src="./yokudeki.png" /></p>
     </div>
     <p id="time"></p>
-
+    <p class="mq">
+      <span>☆彡いらっしゃいませ☆彡</span>
+    </p>
     <div id="container">
       <table>
         <tr>
