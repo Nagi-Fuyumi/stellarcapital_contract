@@ -9,41 +9,73 @@
     />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Cache-Control" content="no-cache" />
+    <style>
+      * {
+        word-break: break-all;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background-color: #fefefe;
+        font-size: 12px;
+      }
+      table {
+        background-color: #eee;
+        border: 1px solid #aaa;
+        width: 100%;
+      }
+
+      table tr:nth-child(odd) {
+        background-color: #fafafa;
+      }
+
+      tr > th {
+        background-color: #888;
+      }
+      tr > td {
+        padding: 10px;
+      }
+    </style>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="web3.min.js"></script>
+    <script src="abi.js"></script>
+    <script>
+      ;(async () => {
+        const searchParams = new URLSearchParams(location.search)
+        const contractAddress = searchParams.get('addr')
+        const tokenId = searchParams.get('tokenid')
+        const block = searchParams.get('block')
+        const timestamp = searchParams.get('timestamp')
+
+        const web3 = new Web3('https://polygon-rpc.com')
+        const Contract = new web3.eth.Contract(abi, contractAddress)
+
+        const counter = await Contract.methods
+          .getokenTransferCount(tokenId)
+          .call()
+        const balance = await Contract.methods.totalSupply().call()
+        const startBlock = await Contract.methods.getStartBlock().call()
+        const tokenName = await Contract.methods.name().call()
+        const owner = await Contract.methods.ownerOf(tokenId).call()
+
+        $('#contractId').text(contractAddress)
+        $('#tokenId').text(tokenId)
+        $('#tokenCount').text(counter + '回')
+        $('#balance').text(balance + 'NFTs')
+        $('#startBlock').text(startBlock)
+        $('#block').text(block)
+        $('#name').text(tokenName)
+        $('#owner').text(owner)
+        $('#timestamp').text(timestamp)
+      })()
+    </script>
   </head>
   <body>
     <div id="container">
-      <style>
-        * {
-          word-break: break-all;
-          box-sizing: border-box;
-        }
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-        }
-        body {
-          background-color: #fefefe;
-          font-size: 12px;
-        }
-        table {
-          background-color: #eee;
-          border: 1px solid #aaa;
-          width: 100%;
-        }
-
-        table tr:nth-child(odd) {
-          background-color: #fafafa;
-        }
-
-        tr > th {
-          background-color: #888;
-        }
-        tr > td {
-          padding: 10px;
-        }
-      </style>
-
       <table>
         <tr>
           <th>名称</th>
