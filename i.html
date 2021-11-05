@@ -65,6 +65,8 @@
       $(async () => {
         $('#change').hide()
 
+        $('#userAgent').text(navigator.userAgent)
+
         const searchParams = new URLSearchParams(location.search)
         const contractAddress = searchParams.get('addr')
         const tokenId = searchParams.get('tokenid')
@@ -182,6 +184,10 @@
         <tr>
           <td>Owner</td>
           <td id="owner"></td>
+        </tr>
+        <tr>
+          <td>userAgent</td>
+          <td id="userAgent"></td>
         </tr>
       </table>
     </div>
